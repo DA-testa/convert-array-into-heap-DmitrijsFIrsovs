@@ -34,7 +34,7 @@ def main():
     elif option == 'F':
         file_name = input().strip()
         with open(file_name, 'r') as file:
-            n = int(file.readline())
+            n = int(file.readline().strip())
             data = list(map(int, file.readline().split()))
         assert len(data) == n
         swaps = build_heap(data)
