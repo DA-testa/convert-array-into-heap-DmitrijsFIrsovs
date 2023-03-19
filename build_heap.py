@@ -25,20 +25,20 @@ def build_heap(data):
 
 def main():
     option = input()
-    if option == 'I':
+    if option.startswith('I'):
         n = int(input())
         data = list(map(int, input().split()))
-        assert len(data) == a
+        assert len(data) == n
         swaps = build_heap(data)
         print(len(swaps))
         for i, j in swaps:
             print(i, j)
-    elif option == 'F':
+    elif option.startswith('F'):
         file = input().strip()
         with open(f'tests/{file}', 'r') as f:
             n = int(f.readline().strip())
             data = list(map(int, f.readline().split()))
-        assert len(data) == a
+        assert len(data) == n
         swaps = build_heap(data)
         print(len(swaps))
     else:
