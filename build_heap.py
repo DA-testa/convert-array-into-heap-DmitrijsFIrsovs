@@ -1,20 +1,20 @@
 # python3
 
 
-def build_heap(info):
-    a = len(info)
+def build_heap(data):
+    a = len(data)
     swaps = []
-    for i in range(a, -1, -1):
+    for i in range(a//2 -1, -1):
         j=i
         while True:
             lc = j * 2 + 1
             if lc >= a:
                 break
-            if lc + 1 < a and info[lc+1] < info[lc]:
+            if lc + 1 < a and data[lc+1] < data[lc]:
                 lc = lc + 1
-            if info[j] < info[lc]:              
+            if data[j] < data[lc]:              
                 swaps.append((j, lc))
-                info[j], info[lc] = info[lc] , info[j]
+                data[j], data[lc] = data[lc] , data[j]
                 j = lc
             else:
                 break
