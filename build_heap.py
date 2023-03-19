@@ -1,23 +1,21 @@
 # python3
 
 
-def build_heap(lst):
+def build_heap(info):
+    a = len(info)
     swaps = []
-    n = len(lst)
-    for i in range(n//2, -1, -1):
+    for i in range(a, -1, -1):
         j=i
         while True:
             lc = j * 1 + 1
-            rc = lc + 1
-            if lc >= n:
+            if lc >= a:
                 break
-            mc = lc
-            if rc < n and lst[rc] < lst[lc]:
-                mc = rc
-            if lst[mc] < lst[j]:
-                lst[j], lst[mc] = lst[mc] , lst[j]
-                swaps.append((j, mc))
-                j = mc
+            if lc + 1 < a and info[lc+1] < info[lc]:
+                lc = lc + 1
+            if info[j] < info[lc]:              
+                swaps.append((j, lc))
+                info[j], info[lc] = info[lc] , info[j]
+                j = lc
             else:
                 break
     return swaps                
@@ -30,25 +28,29 @@ def build_heap(lst):
 
 
 def main():
-    option = input().strip()
-    if option == "I":
-        n = int(input().strip())
-        lst = list(map(int, input().split()))
-        assert len(lst) == n
-        swaps = build_heap(lst)
+    option = str(input())
+    if "I" in option:
+        n = int(input())
+        data = list(map(int, input().split()))
+        assert len(data) == n
+        swaps = build_heap(data)
+        print(len(swaps))
+        for i, j in swaps:
+            print(i, j)
+        return
+    if "F" in option:
+        file_name = input().strip()
+        file_path = "tests/" + file_name
+        with open(file_path, 'r') as file:
+            n = int(file.readline().strip())
+            data = list(map(int, file.readline().strip().split()))
+        assert len(data) == n            
+        swaps = build_heap(data)
         print(len(swaps))
         for swap in swaps:
-            print(swap[0]. swap[1])
-    elif option == "F":
-        file_name = input().strip()
-        with open(file_name, 'r') as file:
-            n = int(file.readline().strip())
-            lst = list(map(int, file.readline().split()))
-            assert len(lst) == n            
-        swaps = build_heap(lst)
-        print(len(swaps))
-    else:
-        print("Invalid opton")
+            print(swap[0], swap[1])
+        return    
+  
 
 
 if __name__ == "__main__":
