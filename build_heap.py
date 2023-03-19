@@ -2,40 +2,48 @@
 
 
 def build_heap(data):
+    a = len(data)
     swaps = []
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
-
-
-    return swaps
-
+    for i in range(a//2 - 1, -1, -1):
+        j = i
+        while True:
+            lc = j * 2 + 1
+            if lc >= a:
+                break
+            if lc + 1 < a and data[lc+1] < data[lc]:
+                lc += 1
+            if data[j] > data[lc]:              
+                swaps.append((j, lc))
+                data[j], data[lc] = data[lc] , data[j]
+                j = lc
+            else:
+                break
+                
+                
+    return swaps                
+  
 
 def main():
-    
-    # TODO : add input and corresponding checks
-    # add another input for I or F 
-    # first two tests are from keyboard, third test is from a file
-
-
-    # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
-
-    # checks if lenght of data is the same as the said lenght
-    assert len(data) == n
-
-    # calls function to assess the data 
-    # and give back all swaps
-    swaps = build_heap(data)
-
-    # TODO: output how many swaps were made, 
-    # this number should be less than 4n (less than 4*len(data))
-
-
-    # output all swaps
-    print(len(swaps))
-    for i, j in swaps:
-        print(i, j)
+    option = input()
+    if option.startswith('I'):
+        n = int(input())
+        data = list(map(int, input().split()))
+        assert len(data) == n
+        swaps = build_heap(data)
+        print(len(swaps))
+        for i, j in swaps:
+            print(i, j)
+    elif option.startswith('F'):
+        file = input().strip()
+        with open(f'tests/{file}', 'r') as f:
+            n = int(f.readline().strip())
+            data = list(map(int, f.readline().split()))
+        assert len(data) == n
+        swaps = build_heap(data)
+        print(len(swaps))
+    else:
+        print("Invalid option")
+  
 
 
 if __name__ == "__main__":
