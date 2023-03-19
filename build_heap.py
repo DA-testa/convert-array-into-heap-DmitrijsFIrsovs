@@ -12,7 +12,7 @@ def build_heap(data):
                 break
             if lc + 1 < a and data[lc+1] < data[lc]:
                 lc += 1
-            if data[j] < data[lc]:              
+            if data[j] > data[lc]:              
                 swaps.append((j, lc))
                 data[j], data[lc] = data[lc] , data[j]
                 j = lc
