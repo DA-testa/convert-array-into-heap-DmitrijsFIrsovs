@@ -39,11 +39,11 @@ def main():
             print(i, j)
         return
     if "F" in option:
-        file_name = input().strip()
-        file_path = "tests/" + file_name
-        with open(file_path, 'r') as file:
-            n = int(file.readline().strip())
-            data = list(map(int, file.readline().strip().split()))
+        file_name = str(input())
+        file_name = "tests/" + str(file_name)
+        with open(file_name, 'r') as file:
+            n = int(file.readline())
+            data = list(map(int, file.readline().split()))
         assert len(data) == n            
         swaps = build_heap(data)
         print(len(swaps))
