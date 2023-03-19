@@ -7,7 +7,7 @@ def build_heap(info):
     for i in range(a, -1, -1):
         j=i
         while True:
-            lc = j * 1 + 1
+            lc = j * 2 + 1
             if lc >= a:
                 break
             if lc + 1 < a and info[lc+1] < info[lc]:
