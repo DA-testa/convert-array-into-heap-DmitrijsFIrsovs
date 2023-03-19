@@ -4,7 +4,7 @@
 def build_heap(data):
     a = len(data)
     swaps = []
-    for i in range(a, -1, -1):
+    for i in range(a//2 - 1, -1, -1):
         j = i
         while True:
             lc = j * 2 + 1
@@ -34,8 +34,8 @@ def main():
         for i, j in swaps:
             print(i, j)
     elif option == 'F':
-        file_name = input().strip()
-        with open(f'tests/{file_name}', 'r') as f:
+        file = input().strip()
+        with open(f'tests/{file}', 'r') as f:
             n = int(f.readline().strip())
             data = list(map(int, f.readline().split()))
         assert len(data) == n
