@@ -41,7 +41,7 @@ def main():
             print(swap[0]. swap[1])
     elif option == "F":
         file_name = input().strip()
-        with open(file_name, "r") as file:
+        with open(file_name, 'r') as file:
             n = int(file.readline().strip())
             lst = list(map(int, file.readline().split()))
             assert len(lst) == n            
